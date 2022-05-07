@@ -1,0 +1,56 @@
+
+   
+What is Maidenlane?
+======================================
+
+Manifold Maidenlane builds of EVM are fully tested, and compliant builds of EVM 1/1.5 for Linux/GNU.
+
+Manifold Builds of EVM are available for free unlimited use and are commercially supported by Manifold as a part of the Maidenlane Platform Core bundle.
+Check out [Manifold Platform Core][3] for more information.
+
+Talos, Alpine, Distroless, Debian are the official images and are available in the following repositories:
+
+  * [talos][4]
+  * [alpine][5]
+  * [debian][6]
+  * [distroless][7]
+
+Tags and `Dockerfile` links
+===========================
+
+Most Recent
+-----------
+{% for version in versions -%}
+  {% if 'jre' not in version -%}
+    {% set keys = links[version].keys() | list %}
+    {%- set values = links[version].values() | list %}
+    {%- set url_split = (values)[0][1].split('/') %}
+  * [`{{ (values)[-1][0] }}`, `{{ (values)[0][0] }}` (*{{ url_split[-2] }}/{{ url_split[-1] }})*][{{ (keys)[0] }}]
+  {%- endif %}
+{%- endfor %}
+
+Previous
+--------
+Earlier created Ubuntu Docker image tags of Azul Zulu for previous update releases of OpenJDK 6-16 are as follows:
+{% for version in versions -%}
+  {% set items = links[version].items() %}
+  * {% for item in items -%}
+    [{{ item[1][0] }}][{{ item[0] }}],
+  {% endfor %}
+{%- endfor %}
+
+Usage
+=====
+
+
+For $VERSION, run:
+
+    docker run -it --rm $ORG/$REPO:$VERSION
+
+  [1]: https://www.
+
+{% for major_ver, body in links.items() %}
+  {% for (num, ver) in body.items() -%}
+    [{{ num }}]: {{ ver[1] }}
+  {% endfor -%}
+{% endfor %}
